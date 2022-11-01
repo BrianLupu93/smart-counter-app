@@ -15,24 +15,32 @@ const Counter = () => {
 
   useEffect(() => {
     const localCity = dayjs.tz.guess();
-    const localTime = dayjs().format("DD.MM.YYYY____HH:mm:ss");
+    const localTime = dayjs().tz(localCity).format("DD.MM.YYYY,HH:mm:ss");
     setLocalCity(localCity);
 
     setToday(localTime);
   }, []);
 
   useEffect(() => {
-    const newToday = dayjs().tz(localCity).format("DD.MM.YYYY____HH:mm:ss");
-    setToday(newToday);
-  }, [localCity]);
+    setTimeout(() => {
+      setToday(dayjs().tz(localCity).format("DD.MM.YYYY,HH:mm:ss"));
+      console.log("effect");
+    }, 1000);
+  }, [today]);
+
+  console.log(today);
+  console.log(localCity);
 
   return (
     <>
       <div>
         <div>
           <div>
-            <h2>{localCity}</h2>
-            <h2>{today}</h2>
+            <div className="display-time">
+              <code>{today?.split(",")[0]}</code>
+              <h2>{localCity}</h2>
+              <code>{today?.split(",")[1]}</code>
+            </div>
           </div>
           <select
             name="cityName"
