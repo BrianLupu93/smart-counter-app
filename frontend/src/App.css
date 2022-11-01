@@ -1,3 +1,16 @@
 .App {
   text-align: center;
 }
+.display-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 33vh;
+  padding-right: 33vh;
+  color: rgb(89, 88, 88);
+}
+
+.display-time code {
+  font-size: 16px;
+  color: red;
+}
