@@ -1,10 +1,10 @@
 import "./App.css";
-import Timezone from "./components/Timezone";
+import Counter from "./components/Counter";
 
 function App() {
   return (
     <div className="App">
-      <Timezone />
+      <Counter />
     </div>
   );
 }
