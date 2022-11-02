@@ -11,6 +11,9 @@
 }
 
 .display-time code {
-  font-size: 16px;
-  color: red;
+  font-size: 18px;
+  color: rgb(249, 112, 0);
+}
+.user-inputs {
+  margin-top: 30px;
 }
