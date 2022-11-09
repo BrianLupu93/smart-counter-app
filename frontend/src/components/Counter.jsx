@@ -12,12 +12,17 @@ dayjs.extend(duration);
 
 const Counter = ({ timezone, end }) => {
   const [counter, setCounter] = useState();
+  const [complete, setComplete] = useState(false);
 
   const localTimeAndDate = dayjs().tz(timezone).format("DD-MM-YYYY,HH:mm:ss");
 
   useEffect(() => {
-    setTimeout(() => {
-      startCounter();
+    const timeout = setTimeout(() => {
+      if (complete) {
+        clearTimeout(timeout);
+      } else {
+        startCounter();
+      }
     }, 1000);
   }, [counter]);
 
@@ -38,18 +43,30 @@ const Counter = ({ timezone, end }) => {
     .set("second", "00");
 
   const startCounter = () => {
-    const duration = dayjs.duration(endData.diff(localTimeAndDate));
+    const duration = dayjs.duration(endData.diff(start));
     setCounter(duration.$d);
+    if (duration.$d.seconds === 0) {
+      if (duration.$d.minutes === 0) {
+        if (duration.$d.hours === 0) {
+          if (duration.$d.days === 0) {
+            if (duration.$d.months === 0) {
+              if (duration.$d.years === 0) {
+                setComplete(true);
+              }
+            }
+          }
+        }
+      }
+    }
   };
-  console.log(counter);
 
   return (
     <>
       <div className="counter">
-        <div className="counter-row-all">
+        <div className={complete ? "complete" : "counter-row-all"}>
           <div className="counter-details">
             <h3>
-              <code>{end.eventName}</code>
+              <code className="event-name-color">{end.eventName}</code>
             </h3>
             <code>
               Date: {end.date} Time: {end.time}

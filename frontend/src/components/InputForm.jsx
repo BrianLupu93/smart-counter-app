@@ -5,10 +5,14 @@ import { useForm } from "react-hook-form";
 const InputForm = ({ setEnds, ends }) => {
   const [end, setEnd] = useState({});
 
-  const { register, reset } = useForm();
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-  const saveInput = (e) => {
-    e.preventDefault();
+  const saveInput = () => {
     setEnds([...ends, end]);
     setEnd({});
     reset();
@@ -16,36 +20,87 @@ const InputForm = ({ setEnds, ends }) => {
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit(saveInput)}>
         <div className="user-inputs">
-          <label htmlFor="eventName">Event Name: </label>
-          <input
-            {...register("eventName")}
-            id="eventName"
-            type="text"
-            onChange={(e) => setEnd({ ...end, eventName: e.target.value })}
-          ></input>
-          <label htmlFor="endDate">Event Date: </label>
-          <input
-            {...register("endDate")}
-            id="endDate"
-            type="date"
-            onChange={(e) => setEnd({ ...end, date: e.target.value })}
-          ></input>
-          <label htmlFor="endTime">Event Time: </label>
-          <input
-            {...register("endTime")}
-            id="endTime"
-            type="time"
-            onChange={(e) => setEnd({ ...end, time: e.target.value })}
-          ></input>
-          <button
-            type="submit"
-            onClick={(e) => {
-              saveInput(e);
-            }}
-          >
-            <code>ADD Counter</code>
+          <div className="event-name">
+            <div>
+              <label className="label-input" htmlFor="eventName">
+                Event Name:
+              </label>
+              <input
+                {...register("eventName", {
+                  required: {
+                    value: true,
+                    message: "The event name is Required!",
+                  },
+                })}
+                id="eventName"
+                type="text"
+                onChange={(e) =>
+                  setEnd({ ...end, eventName: e.target.value.toUpperCase() })
+                }
+              />
+            </div>
+            <div>
+              {errors.eventName && (
+                <code className="error">{errors.eventName.message}</code>
+              )}
+            </div>
+          </div>
+
+          <div className="event-date">
+            <div>
+              {" "}
+              <label className="label-input" htmlFor="endDate">
+                Event Date:
+              </label>
+              <input
+                {...register("endDate", {
+                  required: {
+                    value: true,
+                    message: "The event date is Required!",
+                  },
+                })}
+                id="endDate"
+                type="date"
+                onChange={(e) => setEnd({ ...end, date: e.target.value })}
+              />
+            </div>
+            <div>
+              {" "}
+              {errors.endDate && (
+                <code className="error">{errors.endDate.message}</code>
+              )}
+            </div>
+          </div>
+
+          <div className="event-time">
+            <div>
+              {" "}
+              <label className="label-input" htmlFor="endTime">
+                Event Time:{" "}
+              </label>
+              <input
+                {...register("endTime", {
+                  required: {
+                    value: true,
+                    message: "The event time is Required!",
+                  },
+                })}
+                id="endTime"
+                type="time"
+                onChange={(e) => setEnd({ ...end, time: e.target.value })}
+              />
+            </div>
+            <div>
+              {errors.endTime && (
+                <code className="error">{errors.endTime.message}</code>
+              )}
+            </div>
+          </div>
+
+          <button className="start-btn" type="submit">
+            <code>START</code>
           </button>
         </div>
       </form>
