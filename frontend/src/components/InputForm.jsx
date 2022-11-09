@@ -1,9 +1,28 @@
 import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import duration from "dayjs/plugin/duration";
+import { useEffect } from "react";
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.extend(customParseFormat);
+dayjs.extend(duration);
 
-const InputForm = ({ setEnds, ends }) => {
+const InputForm = ({ setEnds, ends, timezone }) => {
+  const [today, setToday] = useState();
+  const localTimeAndDate = dayjs().tz(timezone);
   const [end, setEnd] = useState({});
+
+  useEffect(() => {
+    setToday({
+      date: dayjs(localTimeAndDate).format("YYYY-MM-DD"),
+      time: dayjs(localTimeAndDate).format("HH:mm"),
+    });
+  }, []);
 
   const {
     handleSubmit,
@@ -50,7 +69,6 @@ const InputForm = ({ setEnds, ends }) => {
 
           <div className="event-date">
             <div>
-              {" "}
               <label className="label-input" htmlFor="endDate">
                 Event Date:
               </label>
@@ -64,10 +82,10 @@ const InputForm = ({ setEnds, ends }) => {
                 id="endDate"
                 type="date"
                 onChange={(e) => setEnd({ ...end, date: e.target.value })}
+                min={today?.date}
               />
             </div>
             <div>
-              {" "}
               {errors.endDate && (
                 <code className="error">{errors.endDate.message}</code>
               )}
@@ -76,7 +94,6 @@ const InputForm = ({ setEnds, ends }) => {
 
           <div className="event-time">
             <div>
-              {" "}
               <label className="label-input" htmlFor="endTime">
                 Event Time:{" "}
               </label>
@@ -90,6 +107,7 @@ const InputForm = ({ setEnds, ends }) => {
                 id="endTime"
                 type="time"
                 onChange={(e) => setEnd({ ...end, time: e.target.value })}
+                min={today?.time}
               />
             </div>
             <div>

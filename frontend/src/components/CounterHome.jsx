@@ -39,7 +39,7 @@ const CounterHome = () => {
       <div>
         <Today timezone={timezone} />
         <TimezoneSelector timezones={timezones} setTimezone={setTimezone} />
-        <InputForm setEnds={setEnds} ends={ends} />
+        <InputForm setEnds={setEnds} ends={ends} timezone={timezone} />
         <div className="display-counter">
           {ends.length > 0 &&
             ends.map((end, i) => {
