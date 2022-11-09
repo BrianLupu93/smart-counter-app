@@ -1,10 +1,10 @@
 import "./App.css";
-import CounterSetUp from "./components/CounterSetUp";
+import CounterHome from "./components/CounterHome";
 
 function App() {
   return (
     <div className="App">
-      <CounterSetUp />
+      <CounterHome />
     </div>
   );
 }
