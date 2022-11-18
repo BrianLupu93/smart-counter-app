@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/github.io/SmartCounter-App/static/css/main.44918b13.css",
+    "main.js": "/github.io/SmartCounter-App/static/js/main.1f43dafe.js",
+    "index.html": "/github.io/SmartCounter-App/index.html",
+    "main.44918b13.css.map": "/github.io/SmartCounter-App/static/css/main.44918b13.css.map",
+    "main.1f43dafe.js.map": "/github.io/SmartCounter-App/static/js/main.1f43dafe.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.44918b13.css",
+    "static/js/main.1f43dafe.js"
+  ]
+}
