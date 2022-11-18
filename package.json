@@ -1,7 +1,6 @@
 {
-  
-  "homepage": ".",
-  "name": "frontend",
+  "homepage": "https://brianlupu93.github.io/smart-counter-app/",
+  "name": "smart-counter-app",
   "version": "0.1.0",
   "private": false,
   "dependencies": {
