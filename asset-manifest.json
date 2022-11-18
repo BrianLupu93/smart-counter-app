@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/github.io/smart-counter-app/static/css/main.44918b13.css",
-    "main.js": "/github.io/smart-counter-app/static/js/main.8caa1f2f.js",
-    "index.html": "/github.io/smart-counter-app/index.html",
-    "main.44918b13.css.map": "/github.io/smart-counter-app/static/css/main.44918b13.css.map",
-    "main.8caa1f2f.js.map": "/github.io/smart-counter-app/static/js/main.8caa1f2f.js.map"
+    "main.css": "./static/css/main.44918b13.css",
+    "main.js": "./static/js/main.8caa1f2f.js",
+    "index.html": "./index.html",
+    "main.44918b13.css.map": "./static/css/main.44918b13.css.map",
+    "main.8caa1f2f.js.map": "./static/js/main.8caa1f2f.js.map"
   },
   "entrypoints": [
     "static/css/main.44918b13.css",
