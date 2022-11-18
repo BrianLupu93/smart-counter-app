@@ -107,7 +107,6 @@ const InputForm = ({ setEnds, ends, timezone }) => {
                 id="endTime"
                 type="time"
                 onChange={(e) => setEnd({ ...end, time: e.target.value })}
-                min={today?.time}
               />
             </div>
             <div>
